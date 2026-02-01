@@ -1,0 +1,44 @@
+﻿;
+; desktopsetup.inf
+;
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = SYSTEM
+ClassGuid   = {4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider    = %IHV%
+DriverVer   = 12/09/2023, 1.0.0.3
+CatalogFile = desktopsetup.cat
+PnpLockdown = 1
+
+[DestinationDirs]
+; 10 = Windows
+WindowsPanther.Files = 10, Panther
+
+[SourceDisksNames]
+0 = %DiskId1%
+
+[SourceDisksFiles]
+Unattend.xml = 0,,
+
+;*****************************************
+; desktopsetup  Install Section
+;*****************************************
+
+[Manufacturer]
+%IHV% = IHV, NTARM64.10.0...16299
+
+[IHV.NTARM64.10.0...16299]
+%DesktopSetup.DeviceDesc% = DesktopSetup_Device, ROOT\DesktopSetup
+
+[DesktopSetup_Device.NT]
+CopyFiles = WindowsPanther.Files
+
+; Windows/Panther
+[WindowsPanther.Files]
+Unattend.xml
+
+[Strings]
+IHV                     = "DuoWoA authors"
+DiskId1                 = "Desktop Setup Installation Disk #1"
+DesktopSetup.DeviceDesc = "Desktop Setup Package"
